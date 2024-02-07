@@ -1,0 +1,73 @@
+---
+title: "Instalaciones"
+description: "Instalación de software para el curso Biodata en Windows"
+output:
+  distill::distill_article:
+    toc: true
+    toc_float: true
+    pandoc_args: ["--number-sections"]
+---
+
+
+# R
+
+Para utilizar R en Windows, vamos a instalar 4 herramientas principales:
+
+* **R base**: es el software base y bruto de programación estadística
+* **Rtools**: permite "compilar" los códigos escritos en otros lenguajes de programación, es importante tenerlo si queremos instalar paquetes en versiones de desarrollo (por ejemplo desde github)
+* **Rstudio**: es el ambiente de desarrollo que vamos a utilizar durante el curso. Anotar: RStudio contiene un componente util que se llama `pandoc`, que permite traducir documentos entre varios formatos (word, markdown, html, latex/pdf etc.). No requiere una instalación suplementaria (se puede, si quieren!), pero se tiene que mencionar como elemento para instalar también.
+
+
+## R (base y Rtools)
+
+Lo que les aconsejo es:
+
+1. desinstalar R y Rstudio en sus computadores para tener un sistema totalmente limpio.
+1. descargar la ultima versión de R, desde <https://cran.dcc.uchile.cl/bin/windows/>, en el enlace `base`
+1. descargar la ultima versión de Rtools, desde <https://cran.dcc.uchile.cl/bin/windows/>, en el enlace `Rtools`
+1. Instalar los programas descargados, primero R y luego Rtools, siguiendo las instrucciones 
+
+
+### Rstudio
+
+RStudio es un ambiente de desarrollo, no es obligatorio utilizarlo, pero simplifica mucho el trabajo con R (y otros lenguajes de programación).
+Anotar: hay muchos movimientos alrededor de la nueva empresa de RStudio (posit) y de quarto, es muy posible que en los próximos años, haya soluciones nuevas para mejorar el ambiente de desarrollo, no duden en seguir las noticias de [Posit](https://posit.co).
+
+Seguir las instrucciones en <https://posit.co/download/rstudio-desktop/> (el instalador exe de la ultima versión para Windows 10/11 debería funcionar)
+
+
+# PostgreSQL
+
+Para utilizar PostgreSQL en Windows, vamos a instalar los elementos siguientes:
+
+* PostgreSQL, el sistema de gestión de base de datos
+* Postgis la extensión espacial del sistema PostgreSQL
+
+Para instalar esos elementos en Windows:
+
+1. Descargar PostgreSQL desde la pagina: <https://www.enterprisedb.com/downloads/postgres-postgresql-downloads>. La ultima versión debería funcionar. Parece que al momento de empezar el curso, debería ser la versión 16
+2. Instalarla siguiendo las instrucciones. El archivo de ejecución debería proponer los elementos siguientes:
+  + PostgreSQL Server: Obligatorio
+  + pgAdmin4: (facultativo) es un software para poder interactuar directamente con las bases de datos de PostgreSQL. Es una buena interfaz para PostgreSQL, pero vamos a utilizar PostgreSQL y SQLite en el curso, entonces, si tienen suficiente espacio, lo pueden instalar, pero si su espacio está limitado, no lo vamos a necesitar.
+  + StackBuilder (obligatorio): nos va a permitir instalar postgis después
+  + Command Line Tools: (facultativo) no estoy seguro que vayamos a utilizar esas herramientas en el curso, pero es relativamente ligero, y siempre es útil, les aconsejo instalarlo
+3. Al final de la instalación de PostgreSQL, una nueva ventana va a abrirse con la ejecución de StackBuilder, seleccionar la base local. En "Spatial extensions" seleccionar Postgis y seguir con el proceso de instalación
+
+# Interfaces para PostgreSQL y SQLite
+
+Existen varios software para interactuar con las bases de datos en SQL.
+Uno de los más fáciles es DBeaver.
+Nos permitirá conectarnos y interactuar con las bases de datos en PostgreSQL y SQLite
+
+Ir a <https://dbeaver.io/download/>, descargar y instalar DBeaver Community edition para Windows.
+
+
+
+# Qgis
+
+Quantum gis es un sistema de gestión de información geográfica libre.
+
+Lo pueden descargar y instalar desde la pagina: <https://www.qgis.org/es/site/forusers/alldownloads.html>.
+Les aconsejo instalar la versión estable "Lanzamiento de Largo Plazo".
+
+

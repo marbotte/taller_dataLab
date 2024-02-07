@@ -26,10 +26,18 @@ Programa:
 * 30 min de preguntas / debates / discusiones
 * 2h de taller sobre el uso de la base de datos del proyecto "ANH-MagdalenaMedio (2021-2022)" (linea base biodiversidad Puerto Wilches)
 
+
+Por favor llenar [este formulario](https://docs.google.com/forms/d/e/1FAIpQLSelogcqBN14BGDHBgYMr3a-ImEf-SWGoHMOm9dRYyGXhlO5CQ/viewform?usp=sf_link).
+
+
 # Instalación
 
-Pronto pondré la información sobre la instalación de programas para utilizar la base de datos. Por ahora, se pueden referir en las instrucción de un curso que di en Chile (nota: no vamos a utilizar todo, pero son los programas basicos para el uso de las bases de datos relacionales): 
 
-* Windows: <https://marbotte.github.io/cursoBiodata/inst_software_windows.html>
-* Linux: <https://marbotte.github.io/cursoBiodata/inst_software_linux.html>
-* MacOS: <https://marbotte.github.io/cursoBiodata/inst-software_macOS.html>
+* [Windows](inst_software_windows.html)
+* [Linux](inst_software_linux.html)
+* [MacOS](inst_software_macOS.html)
+
+
+# Presentación
+
+No duden en mirar/descargar las diapositivas de mi [presentación](https://docs.google.com/presentation/d/1FuAFN-douyHBGFa8gnQrGDYt6Yq1b_795OshRQZJntI/edit?usp=sharing).
