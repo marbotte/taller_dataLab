@@ -1,0 +1,206 @@
+---
+title: "Actividad"
+description: "Explorar la base de datos y hacer consultas"
+output:
+  distill::distill_article:
+    toc: true
+    toc_float: true
+    pandoc_args: ["--number-sections"]
+---
+
+********************
+
+Todos los códigos que se utilizaron para crear y analizar la base de datos están en el repositorio: <https://github.com/PEM-Humboldt/biodiversity-puerto-wilches/tree/master>
+
+********************
+
+
+# Explorar la base de datos
+
+En un primer ejercicio, conecta la base de datos en:
+
+* R
+* DBeaver
+* QGis
+
+(no olvidar desconectar las sesiones!)
+
+
+En R, pueden aplicar el codigo siguientes para obtener una lista de las tablas de la base de datos:
+(anotar: yo utilicé un sistema particular, `pgpass` para no tener que mostrar mi contraseña en un sitio web abierto, vas a necesitar añadir los parametros "user" y "password" para poder conectarte a la base de datos) 
+
+```{r}
+require(RPostgreSQL)
+fracking_db<-dbConnect(PostgreSQL(),dbname="fracking",host="20.84.88.119")
+dbListTables(fracking_db)
+```
+
+
+Durante toda la actividad, no duden en referirse al documento: <https://drive.google.com/file/d/1oHAV5Ra2XeK_O7ES53KlUfeb4gbd3Gde/view?usp=sharing>. Desafortunadamente, parece que el paquete que hace este tipo de figuras cambio y el codigo ya no está compatible con la base de datos.
+
+
+# Hacer consultas
+
+El lenguaje SQL es un lenguaje completo para el manejo de bases de datos.
+2 horas no son suficientes para aprender el lenguaje y ser capaz de escribir consultas complejas solo.
+Sin embargo es un lenguaje relativamente fácil para entender
+
+Por ejemplo, la consulta siguiente permite mirar cuales son los grupos biológicos incluidos en la base de datos:
+
+```{sql, connection=fracking_db, print.max=NA}
+SELECT *
+FROM main.def_gp_biol
+```
+
+En R, puedes obtener la misma tabla utilizando:
+
+```{r}
+dbGetQuery(fracking_db,
+           "SELECT *
+            FROM main.def_gp_biol")
+```
+
+
+
+*Con este ejemplo, ¿puedes hacer la consulta de todos los métodos de recolección que se utilizaron en el proyecto?*
+
+
+# Consultas simples
+
+Acá vamos a mirar como funcionan las consultas en una sola tabla
+
+
+## Contar el número de registros
+
+```{sql, connection=fracking_db}
+SELECT COUNT(*) nb_reg
+FROM main.registros
+```
+
+## Contar el número de registros en cada evento
+
+```{sql, connection=fracking_db}
+SELECT cd_event, COUNT(DISTINCT cd_reg) nb_reg
+FROM main.registros
+GROUP BY cd_event
+ORDER BY COUNT(*) DESC
+```
+
+*¿Cuantos sitios han sido muestreados con cada metodo?*
+
+## Y si filtramos para tener unicamente los registros de 2021
+
+```{sql, connection=fracking_db}
+SELECT cd_event, COUNT(DISTINCT cd_reg) nb_reg
+FROM main.registros
+WHERE EXTRACT(YEAR FROM date_time)=2021
+GROUP BY cd_event
+ORDER BY COUNT(*) DESC
+```
+
+
+# Consultas en más de una tabla
+
+Existen relaciones entre las tablas de la base de datos, podemos utilizar esas relaciones, o cualquiera  relación para poder hacer nuestras consultas.
+
+
+## Cuantos eventos por metodo de recolección y grupo biologico?
+
+```{sql, connection=fracking_db}
+SELECT protocol_spa, ge.cd_gp_biol, COUNT(DISTINCT e.cd_event) num_eventos
+FROM main.event e
+LEFT JOIN main.gp_event ge ON e.cd_gp_event=ge.cd_gp_event
+LEFT JOIN main.def_protocol p ON ge.cd_protocol=p.cd_protocol
+GROUP BY protocol_spa, ge.cd_gp_biol
+```
+
+*¿En una misma tabla, poner el método de recolección, el grupo biológico, el numero de eventos, el numero de registros, la primera fecha y la ultima fecha de recolección.*
+
+# Un poco de taxonomía
+
+*Mirar la tabla de taxonomía, la tabla de registros, y explicar la lógica del manejo de datos taxonómicos y sus ventajas/inconvenientes*
+
+
+## Funciones de taxonomía
+ 
+La función `find_higher_id` permite encontrar los niveles taxonómicos superiores.
+
+```{sql, connection=fracking_db}
+SELECT * 
+FROM main.taxo 
+WHERE name_tax='Asio clamator'
+```
+
+Por ejemplo, podemos ver que la especie *Asio clamator* tiene el cd_tax 2306.
+
+Si buscamos la familia de este taxón:
+
+```{sql, connection=fracking_db}
+SELECT find_higher_id(2306,'FAM')
+```
+```{sql, connection=fracking_db}
+SELECT *
+FROM main.taxo
+WHERE cd_tax=712
+```
+
+
+*Buscar un evento, y dar la abundancia de registros para cada familia*
+
+
+
+
+
+# ¿Y los datos espaciales?
+
+Postgis es una extensión de postgreSQL que permite manejar datos espaciales y hacer cálculos espaciales
+
+
+Por ejemplo, podemos calcular el area de cada tipo de habitat:
+
+```{r}
+(habitatArea <- dbGetQuery(fracking_db,
+           "SELECT landcov_spa,SUM(ST_AREA(the_geom)) area
+FROM spat.landcov
+LEFT JOIN spat.def_landcov USING (cd_landcov)
+GROUP BY landcov_spa;
+"))
+```
+
+```{r}
+require(openxlsx)
+par(mar=c(8,5,1,1))
+habitatProp<-habitatArea$area/sum(habitatArea$area)
+names(habitatProp)<-habitatArea$landcov_spa
+color<-read.xlsx("Colores.xlsx",sheet = "landcover")
+barplot(habitatProp,col=color$color[match(names(habitatProp),color$landcov_spa)],las=2)
+```
+
+(El archivo de colores está [aca](https://docs.google.com/spreadsheets/d/1GqbYYsg2gsY534J6-ITDkGqcTaKnWOmK/edit?usp=sharing&ouid=110072426432244168209&rtpof=true&sd=true))
+
+
+Ahora si comparamos con la proporción de los eventos en los habitats terrestres:
+
+
+
+
+```{r}
+(habitatEventTerr <- dbGetQuery(fracking_db,
+                               "SELECT landcov_spa,COUNT(*) nb_event
+                               FROM habitat_event he
+                               LEFT JOIN spat.def_landcov dl ON dl.landcov=he.habitat
+                               WHERE aqu_ter='terrestrial'
+                               GROUP BY landcov_spa"))
+propHabitatEvent<-habitatEventTerr$nb_event/sum(habitatEventTerr$nb_event)
+names(propHabitatEvent)<-habitatEventTerr$landcov_spa
+par(mar=c(8,5,1,1))
+propHabitatEvent<-propHabitatEvent[names(habitatProp)]
+barplot(propHabitatEvent,col=color$color[match(names(propHabitatEvent),color$landcov_spa)],las=2)
+```
+
+*Hacer el mismo ejercicio por grupo biologico, para ver cuales son los grupos más sesgados en terminos de proporciones de habitat frente al paisaje real de Puerto Wilches*
+
+```{r}
+dbDisconnect(fracking_db)
+```
+

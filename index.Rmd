@@ -41,3 +41,8 @@ Por favor llenar [este formulario](https://docs.google.com/forms/d/e/1FAIpQLSelo
 # Presentación
 
 No duden en mirar/descargar las diapositivas de mi [presentación](https://docs.google.com/presentation/d/1FuAFN-douyHBGFa8gnQrGDYt6Yq1b_795OshRQZJntI/edit?usp=sharing).
+
+
+# Actividad
+
+Este [documento](actividad.html) describe las actividades de la segunda parte del taller.

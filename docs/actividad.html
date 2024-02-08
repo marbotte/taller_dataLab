@@ -88,29 +88,29 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--radix_placeholder_meta_tags-->
-  <title>DataLab: About this site</title>
+  <title>DataLab: Actividad</title>
 
-  <meta property="description" itemprop="description" content="Some additional details about the website"/>
+  <meta property="description" itemprop="description" content="Explorar la base de datos y hacer consultas"/>
 
 
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="DataLab: About this site"/>
+  <meta property="og:title" content="DataLab: Actividad"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="Some additional details about the website"/>
+  <meta property="og:description" content="Explorar la base de datos y hacer consultas"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="DataLab"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="DataLab: About this site"/>
-  <meta property="twitter:description" content="Some additional details about the website"/>
+  <meta property="twitter:title" content="DataLab: Actividad"/>
+  <meta property="twitter:description" content="Explorar la base de datos y hacer consultas"/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description"]}},"value":[{"type":"character","attributes":{},"value":["About this site"]},{"type":"character","attributes":{},"value":["Some additional details about the website"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","output"]}},"value":[{"type":"character","attributes":{},"value":["Actividad"]},{"type":"character","attributes":{},"value":["Explorar la base de datos y hacer consultas"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_float","pandoc_args"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["--number-sections"]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2119,7 +2119,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"About this site","description":"Some additional details about the website","authors":[]}
+{"title":"Actividad","description":"Explorar la base de datos y hacer consultas","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2154,16 +2154,727 @@ Instalación
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>About this site</h1>
+<h1>Actividad</h1>
 
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>Some additional details about the website</p></p>
+<p>Explorar la base de datos y hacer consultas</p>
 </div>
 
 
 <div class="d-article">
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#explorar-la-base-de-datos" id="toc-explorar-la-base-de-datos"><span class="toc-section-number">1</span> Explorar la base de datos</a></li>
+<li><a href="#hacer-consultas" id="toc-hacer-consultas"><span class="toc-section-number">2</span> Hacer consultas</a></li>
+<li><a href="#consultas-simples" id="toc-consultas-simples"><span class="toc-section-number">3</span> Consultas simples</a>
+<ul>
+<li><a href="#contar-el-número-de-registros" id="toc-contar-el-número-de-registros"><span class="toc-section-number">3.1</span> Contar el número de registros</a></li>
+<li><a href="#contar-el-número-de-registros-en-cada-evento" id="toc-contar-el-número-de-registros-en-cada-evento"><span class="toc-section-number">3.2</span> Contar el número de registros en cada evento</a></li>
+<li><a href="#y-si-filtramos-para-tener-unicamente-los-registros-de-2021" id="toc-y-si-filtramos-para-tener-unicamente-los-registros-de-2021"><span class="toc-section-number">3.3</span> Y si filtramos para tener unicamente los registros de 2021</a></li>
+</ul></li>
+<li><a href="#consultas-en-más-de-una-tabla" id="toc-consultas-en-más-de-una-tabla"><span class="toc-section-number">4</span> Consultas en más de una tabla</a>
+<ul>
+<li><a href="#cuantos-eventos-por-metodo-de-recolección-y-grupo-biologico" id="toc-cuantos-eventos-por-metodo-de-recolección-y-grupo-biologico"><span class="toc-section-number">4.1</span> Cuantos eventos por metodo de recolección y grupo biologico?</a></li>
+</ul></li>
+<li><a href="#un-poco-de-taxonomía" id="toc-un-poco-de-taxonomía"><span class="toc-section-number">5</span> Un poco de taxonomía</a>
+<ul>
+<li><a href="#funciones-de-taxonomía" id="toc-funciones-de-taxonomía"><span class="toc-section-number">5.1</span> Funciones de taxonomía</a></li>
+</ul></li>
+<li><a href="#y-los-datos-espaciales" id="toc-y-los-datos-espaciales"><span class="toc-section-number">6</span> ¿Y los datos espaciales?</a></li>
+</ul>
+</nav>
+</div>
+<hr />
+<p>Todos los códigos que se utilizaron para crear y analizar la base de datos están en el repositorio: <a href="https://github.com/PEM-Humboldt/biodiversity-puerto-wilches/tree/master" class="uri">https://github.com/PEM-Humboldt/biodiversity-puerto-wilches/tree/master</a></p>
+<hr />
+<h1 data-number="1" id="explorar-la-base-de-datos"><span class="header-section-number">1</span> Explorar la base de datos</h1>
+<p>En un primer ejercicio, conecta la base de datos en:</p>
+<ul>
+<li>R</li>
+<li>DBeaver</li>
+<li>QGis</li>
+</ul>
+<p>(no olvidar desconectar las sesiones!)</p>
+<p>En R, pueden aplicar el codigo siguientes para obtener una lista de las tablas de la base de datos:
+(anotar: yo utilicé un sistema particular, <code>pgpass</code> para no tener que mostrar mi contraseña en un sitio web abierto, vas a necesitar añadir los parametros “user” y “password” para poder conectarte a la base de datos)</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/tomoakin/RPostgreSQL'>RPostgreSQL</a></span><span class='op'>)</span></span>
+<span><span class='va'>fracking_db</span><span class='op'>&lt;-</span><span class='fu'><a href='https://dbi.r-dbi.org/reference/dbConnect.html'>dbConnect</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/pkg/RPostgreSQL/man/PostgreSQL.html'>PostgreSQL</a></span><span class='op'>(</span><span class='op'>)</span>,dbname<span class='op'>=</span><span class='st'>"fracking"</span>,host<span class='op'>=</span><span class='st'>"20.84.88.119"</span><span class='op'>)</span></span>
+<span><span class='fu'><a href='https://dbi.r-dbi.org/reference/dbListTables.html'>dbListTables</a></span><span class='op'>(</span><span class='va'>fracking_db</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>  [1] &quot;spatial_ref_sys&quot;                            
+  [2] &quot;phy_chi_hidro_event&quot;                        
+  [3] &quot;assign_individual_tag&quot;                      
+  [4] &quot;homolog_def&quot;                                
+  [5] &quot;def_landcov&quot;                                
+  [6] &quot;landcov&quot;                                    
+  [7] &quot;platform&quot;                                   
+  [8] &quot;punto_referencia&quot;                           
+  [9] &quot;registros_extra&quot;                            
+ [10] &quot;def_categ_event_extra&quot;                      
+ [11] &quot;def_season&quot;                                 
+ [12] &quot;gp_event&quot;                                   
+ [13] &quot;event_extra&quot;                                
+ [14] &quot;def_var_event_extra&quot;                        
+ [15] &quot;anfibios_registros&quot;                         
+ [16] &quot;def_var_habitat&quot;                            
+ [17] &quot;def_var_ind_charac&quot;                         
+ [18] &quot;def_tax_rank&quot;                               
+ [19] &quot;atropellamientos_event&quot;                     
+ [20] &quot;registros&quot;                                  
+ [21] &quot;aves_registros&quot;                             
+ [22] &quot;botanica_event&quot;                             
+ [23] &quot;botanica_registros_arborea&quot;                 
+ [24] &quot;anfibios_event&quot;                             
+ [25] &quot;hidrobiologico_registros_macroinvertebrados&quot;
+ [26] &quot;hidrobiologico_registros_perifiton&quot;         
+ [27] &quot;hidrobiologico_registros_zooplancton&quot;       
+ [28] &quot;hormigas_registros&quot;                         
+ [29] &quot;morfo_taxo&quot;                                 
+ [30] &quot;individual_characteristics&quot;                 
+ [31] &quot;phy_chi_hidro_aguas&quot;                        
+ [32] &quot;multimedia&quot;                                 
+ [33] &quot;institution&quot;                                
+ [34] &quot;phy_chi_hidro_sedi&quot;                         
+ [35] &quot;phy_chi_peces&quot;                              
+ [36] &quot;individual_tag&quot;                             
+ [37] &quot;mariposas_registros&quot;                        
+ [38] &quot;peces_event&quot;                                
+ [39] &quot;peces_registros&quot;                            
+ [40] &quot;reptiles_event&quot;                             
+ [41] &quot;phy_chi_aguas_hidrobiologico&quot;               
+ [42] &quot;atropellamientos_registros&quot;                 
+ [43] &quot;aves_event&quot;                                 
+ [44] &quot;mamiferos_tot_event&quot;                        
+ [45] &quot;mamiferos_event&quot;                            
+ [46] &quot;estim_biodiv_cd_event&quot;                      
+ [47] &quot;estim_biodiv_cd_pt_ref&quot;                     
+ [48] &quot;estim_biodiv_anh_tempo&quot;                     
+ [49] &quot;gp_analysis&quot;                                
+ [50] &quot;botanica_registros_col&quot;                     
+ [51] &quot;botanica_registros_epi_vas&quot;                 
+ [52] &quot;cameras_trampa_event&quot;                       
+ [53] &quot;cameras_trampa_registros&quot;                   
+ [54] &quot;collembolos_event&quot;                          
+ [55] &quot;collembolos_registros&quot;                      
+ [56] &quot;collembolos_fotos&quot;                          
+ [57] &quot;corr_coord_ave&quot;                             
+ [58] &quot;corr_coord_cole&quot;                            
+ [59] &quot;corr_coord_esca&quot;                            
+ [60] &quot;corr_coord_herp&quot;                            
+ [61] &quot;corr_coord_horm&quot;                            
+ [62] &quot;corr_coord_mami&quot;                            
+ [63] &quot;botanica_registros_epi_novas&quot;               
+ [64] &quot;corr_coord_mari&quot;                            
+ [65] &quot;escarabajos_registros&quot;                      
+ [66] &quot;bosques&quot;                                    
+ [67] &quot;centros_poblados&quot;                           
+ [68] &quot;cienaga&quot;                                    
+ [69] &quot;cob_def&quot;                                    
+ [70] &quot;cob_natural&quot;                                
+ [71] &quot;cobertura&quot;                                  
+ [72] &quot;drenajes345&quot;                                
+ [73] &quot;kale&quot;                                       
+ [74] &quot;def_gp_biol&quot;                                
+ [75] &quot;def_phy_chi_type&quot;                           
+ [76] &quot;def_categ_habitat&quot;                          
+ [77] &quot;def_measurement_type&quot;                       
+ [78] &quot;def_organ&quot;                                  
+ [79] &quot;def_multimedia_type&quot;                        
+ [80] &quot;def_var_biometry&quot;                           
+ [81] &quot;biometry&quot;                                   
+ [82] &quot;def_categ_registros_extra&quot;                  
+ [83] &quot;def_ind_charac_categ&quot;                       
+ [84] &quot;def_protocol&quot;                               
+ [85] &quot;def_unit&quot;                                   
+ [86] &quot;habitat&quot;                                    
+ [87] &quot;def_var_samp_eff&quot;                           
+ [88] &quot;taxo&quot;                                       
+ [89] &quot;catalog&quot;                                    
+ [90] &quot;def_var_registros_extra&quot;                    
+ [91] &quot;def_var_ind_qt&quot;                             
+ [92] &quot;event&quot;                                      
+ [93] &quot;people&quot;                                     
+ [94] &quot;hidrobiologico_event&quot;                       
+ [95] &quot;hidrobiologico_registros&quot;                   
+ [96] &quot;hormigas_event&quot;                             
+ [97] &quot;hidrobiologico_registros_fitoplancton&quot;      
+ [98] &quot;hidrobiologico_registros_macrofitas&quot;        
+ [99] &quot;municipios&quot;                                 
+[100] &quot;mamiferos_registros&quot;                        
+[101] &quot;escarabajos_event&quot;                          
+[102] &quot;mamiferos_us_event&quot;                         
+[103] &quot;mamiferos_us_registros&quot;                     
+[104] &quot;phy_chi_events_hidrobiologico&quot;              
+[105] &quot;phy_chi_general_hidrobiologico&quot;             
+[106] &quot;phy_chi_peces&quot;                              
+[107] &quot;phy_chi_sedimento_hidrobiologico&quot;           
+[108] &quot;reptiles_registros&quot;                         
+[109] &quot;taxonomy_total&quot;                             
+[110] &quot;mamiferos_tot_registros&quot;                    
+[111] &quot;mariposas_event&quot;                            
+[112] &quot;oleoducto&quot;                                  
+[113] &quot;platero&quot;                                    
+[114] &quot;pozos&quot;                                      
+[115] &quot;pozos_activos&quot;                              
+[116] &quot;red_electrica&quot;                              
+[117] &quot;red_ferrea&quot;                                 
+[118] &quot;rios_mgsg&quot;                                  
+[119] &quot;via_principal&quot;                              
+[120] &quot;via_secundaria&quot;                             
+[121] &quot;zonas&quot;                                      </code></pre>
+</div>
+<p>Durante toda la actividad, no duden en referirse al documento: <a href="https://drive.google.com/file/d/1oHAV5Ra2XeK_O7ES53KlUfeb4gbd3Gde/view?usp=sharing" class="uri">https://drive.google.com/file/d/1oHAV5Ra2XeK_O7ES53KlUfeb4gbd3Gde/view?usp=sharing</a>. Desafortunadamente, parece que el paquete que hace este tipo de figuras cambio y el codigo ya no está compatible con la base de datos.</p>
+<h1 data-number="2" id="hacer-consultas"><span class="header-section-number">2</span> Hacer consultas</h1>
+<p>El lenguaje SQL es un lenguaje completo para el manejo de bases de datos.
+2 horas no son suficientes para aprender el lenguaje y ser capaz de escribir consultas complejas solo.
+Sin embargo es un lenguaje relativamente fácil para entender</p>
+<p>Por ejemplo, la consulta siguiente permite mirar cuales son los grupos biológicos incluidos en la base de datos:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb2"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> main.def_gp_biol</span></code></pre></div>
+<div class="knitsql-table">
+<table>
+<caption><span id="tab:unnamed-chunk-2">Table 1: </span>Displaying records 1 - 10</caption>
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 26%" />
+<col style="width: 10%" />
+<col style="width: 26%" />
+<col style="width: 14%" />
+<col style="width: 9%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">cd_gp_biol</th>
+<th style="text-align: left;">biol_gp</th>
+<th style="text-align: left;">super_gp</th>
+<th style="text-align: left;">biol_gp_spa</th>
+<th style="text-align: left;">super_gp_spa</th>
+<th style="text-align: left;">aquatic</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">herp</td>
+<td style="text-align: left;">Herpetofauna</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Herpetos</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">FALSE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">atro</td>
+<td style="text-align: left;">Atropellamientos</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Atropellamientos</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">FALSE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">aves</td>
+<td style="text-align: left;">Birds</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Aves</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">FALSE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">arbo</td>
+<td style="text-align: left;">Trees</td>
+<td style="text-align: left;">Botany</td>
+<td style="text-align: left;">Arbórea</td>
+<td style="text-align: left;">Botánica</td>
+<td style="text-align: left;">FALSE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">epva</td>
+<td style="text-align: left;">Vascular epiphytes</td>
+<td style="text-align: left;">Botany</td>
+<td style="text-align: left;">Epifitas vasculares</td>
+<td style="text-align: left;">Botánica</td>
+<td style="text-align: left;">FALSE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">epnv</td>
+<td style="text-align: left;">Non-vascular epiphytes</td>
+<td style="text-align: left;">Botany</td>
+<td style="text-align: left;">Epifitas no vasculares</td>
+<td style="text-align: left;">Botánica</td>
+<td style="text-align: left;">FALSE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">cole</td>
+<td style="text-align: left;">Collembola</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Colémbolos</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">FALSE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">esca</td>
+<td style="text-align: left;">Beetles</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Escarabajos</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">FALSE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">horm</td>
+<td style="text-align: left;">Ants</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Hormigas</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">FALSE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">mami</td>
+<td style="text-align: left;">Mammals</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Mamiferos</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">FALSE</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>En R, puedes obtener la misma tabla utilizando:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://dbi.r-dbi.org/reference/dbGetQuery.html'>dbGetQuery</a></span><span class='op'>(</span><span class='va'>fracking_db</span>,</span>
+<span>           <span class='st'>"SELECT *</span></span>
+<span><span class='st'>            FROM main.def_gp_biol"</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>   cd_gp_biol                biol_gp       super_gp
+1        herp           Herpetofauna           &lt;NA&gt;
+2        atro       Atropellamientos           &lt;NA&gt;
+3        aves                  Birds           &lt;NA&gt;
+4        arbo                  Trees         Botany
+5        epva     Vascular epiphytes         Botany
+6        epnv Non-vascular epiphytes         Botany
+7        cole             Collembola           &lt;NA&gt;
+8        esca                Beetles           &lt;NA&gt;
+9        horm                   Ants           &lt;NA&gt;
+10       mami                Mammals           &lt;NA&gt;
+11       mari            Butterflies           &lt;NA&gt;
+12       pece                 Fishes           &lt;NA&gt;
+13       fipl          Phytoplankton   Hydrobiology
+14       zopl            Zooplankton   Hydrobiology
+15       peri             Periphyton   Hydrobiology
+16       mafi            Macrophytes   Hydrobiology
+17       minv     Macroinvertebrates   Hydrobiology
+18       catr           Camera traps           &lt;NA&gt;
+19       arch                Archaea Microorganisms
+20       bact               Bacteria Microorganisms
+21       paso             Soundscape           &lt;NA&gt;
+              biol_gp_spa    super_gp_spa aquatic
+1                Herpetos            &lt;NA&gt;   FALSE
+2        Atropellamientos            &lt;NA&gt;   FALSE
+3                    Aves            &lt;NA&gt;   FALSE
+4                 Arbórea        Botánica   FALSE
+5     Epifitas vasculares        Botánica   FALSE
+6  Epifitas no vasculares        Botánica   FALSE
+7              Colémbolos            &lt;NA&gt;   FALSE
+8             Escarabajos            &lt;NA&gt;   FALSE
+9                Hormigas            &lt;NA&gt;   FALSE
+10              Mamiferos            &lt;NA&gt;   FALSE
+11              Mariposas            &lt;NA&gt;   FALSE
+12                  Peces            &lt;NA&gt;    TRUE
+13           Fitoplancton   Hidrobiología    TRUE
+14            Zooplancton   Hidrobiología    TRUE
+15              Perifiton   Hidrobiología    TRUE
+16             Macrofitas   Hidrobiología    TRUE
+17     Macroinvertebrados   Hidrobiología    TRUE
+18         Cameras trampa            &lt;NA&gt;   FALSE
+19                Arqueas Microorganismos   FALSE
+20               Bacteria Microorganismos   FALSE
+21       Paísajes sonores            &lt;NA&gt;   FALSE</code></pre>
+</div>
+<p><em>Con este ejemplo, ¿puedes hacer la consulta de todos los métodos de recolección que se utilizaron en el proyecto?</em></p>
+<h1 data-number="3" id="consultas-simples"><span class="header-section-number">3</span> Consultas simples</h1>
+<p>Acá vamos a mirar como funcionan las consultas en una sola tabla</p>
+<h2 data-number="3.1" id="contar-el-número-de-registros"><span class="header-section-number">3.1</span> Contar el número de registros</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb4"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="fu">COUNT</span>(<span class="op">*</span>) nb_reg</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> main.registros</span></code></pre></div>
+<div class="knitsql-table">
+<table>
+<caption><span id="tab:unnamed-chunk-4">Table 2: </span>1 records</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">nb_reg</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">129256</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<h2 data-number="3.2" id="contar-el-número-de-registros-en-cada-evento"><span class="header-section-number">3.2</span> Contar el número de registros en cada evento</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb5"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> cd_event, <span class="fu">COUNT</span>(<span class="kw">DISTINCT</span> cd_reg) nb_reg</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> main.registros</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> cd_event</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">DESC</span></span></code></pre></div>
+<div class="knitsql-table">
+<table>
+<caption><span id="tab:unnamed-chunk-5">Table 3: </span>Displaying records 1 - 10</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">cd_event</th>
+<th style="text-align: right;">nb_reg</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">9385</td>
+<td style="text-align: right;">4321</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">9375</td>
+<td style="text-align: right;">3481</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">9317</td>
+<td style="text-align: right;">2853</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">9316</td>
+<td style="text-align: right;">2407</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">9475</td>
+<td style="text-align: right;">1884</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">9359</td>
+<td style="text-align: right;">1854</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">9348</td>
+<td style="text-align: right;">1834</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">9390</td>
+<td style="text-align: right;">1691</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">9465</td>
+<td style="text-align: right;">1576</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">9351</td>
+<td style="text-align: right;">1488</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><em>¿Cuantos sitios han sido muestreados con cada metodo?</em></p>
+<h2 data-number="3.3" id="y-si-filtramos-para-tener-unicamente-los-registros-de-2021"><span class="header-section-number">3.3</span> Y si filtramos para tener unicamente los registros de 2021</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb6"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> cd_event, <span class="fu">COUNT</span>(<span class="kw">DISTINCT</span> cd_reg) nb_reg</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> main.registros</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> <span class="fu">EXTRACT</span>(<span class="dt">YEAR</span> <span class="kw">FROM</span> date_time)<span class="op">=</span><span class="dv">2021</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> cd_event</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">DESC</span></span></code></pre></div>
+<div class="knitsql-table">
+<table>
+<caption><span id="tab:unnamed-chunk-6">Table 4: </span>Displaying records 1 - 10</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">cd_event</th>
+<th style="text-align: right;">nb_reg</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">9375</td>
+<td style="text-align: right;">3481</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">9316</td>
+<td style="text-align: right;">2407</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">9475</td>
+<td style="text-align: right;">1884</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">9376</td>
+<td style="text-align: right;">1070</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">9459</td>
+<td style="text-align: right;">801</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">9400</td>
+<td style="text-align: right;">704</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4854</td>
+<td style="text-align: right;">681</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">9482</td>
+<td style="text-align: right;">646</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">9320</td>
+<td style="text-align: right;">599</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">9315</td>
+<td style="text-align: right;">565</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<h1 data-number="4" id="consultas-en-más-de-una-tabla"><span class="header-section-number">4</span> Consultas en más de una tabla</h1>
+<p>Existen relaciones entre las tablas de la base de datos, podemos utilizar esas relaciones, o cualquiera relación para poder hacer nuestras consultas.</p>
+<h2 data-number="4.1" id="cuantos-eventos-por-metodo-de-recolección-y-grupo-biologico"><span class="header-section-number">4.1</span> Cuantos eventos por metodo de recolección y grupo biologico?</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb7"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> protocol_spa, ge.cd_gp_biol, <span class="fu">COUNT</span>(<span class="kw">DISTINCT</span> e.cd_event) num_eventos</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> main.event e</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">LEFT</span> <span class="kw">JOIN</span> main.gp_event ge <span class="kw">ON</span> e.cd_gp_event<span class="op">=</span>ge.cd_gp_event</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="kw">LEFT</span> <span class="kw">JOIN</span> main.def_protocol p <span class="kw">ON</span> ge.cd_protocol<span class="op">=</span>p.cd_protocol</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> protocol_spa, ge.cd_gp_biol</span></code></pre></div>
+<div class="knitsql-table">
+<table>
+<caption><span id="tab:unnamed-chunk-7">Table 5: </span>Displaying records 1 - 10</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">protocol_spa</th>
+<th style="text-align: left;">cd_gp_biol</th>
+<th style="text-align: right;">num_eventos</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Arrastre</td>
+<td style="text-align: left;">pece</td>
+<td style="text-align: right;">90</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Atarraya</td>
+<td style="text-align: left;">pece</td>
+<td style="text-align: right;">92</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Botella Van Dorn</td>
+<td style="text-align: left;">fipl</td>
+<td style="text-align: right;">246</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Botella Van Dorn</td>
+<td style="text-align: left;">zopl</td>
+<td style="text-align: right;">246</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Búsqueda de atropellamiento</td>
+<td style="text-align: left;">atro</td>
+<td style="text-align: right;">50</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Búsqueda por encuentros visuales</td>
+<td style="text-align: left;">herp</td>
+<td style="text-align: right;">470</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Captura manual de hormigas</td>
+<td style="text-align: left;">horm</td>
+<td style="text-align: right;">800</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Captura manual de insectos</td>
+<td style="text-align: left;">esca</td>
+<td style="text-align: right;">319</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Cuadrantes</td>
+<td style="text-align: left;">epnv</td>
+<td style="text-align: right;">669</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Cuadrantes</td>
+<td style="text-align: left;">mafi</td>
+<td style="text-align: right;">82</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><em>¿En una misma tabla, poner el método de recolección, el grupo biológico, el numero de eventos, el numero de registros, la primera fecha y la ultima fecha de recolección.</em></p>
+<h1 data-number="5" id="un-poco-de-taxonomía"><span class="header-section-number">5</span> Un poco de taxonomía</h1>
+<p><em>Mirar la tabla de taxonomía, la tabla de registros, y explicar la lógica del manejo de datos taxonómicos y sus ventajas/inconvenientes</em></p>
+<h2 data-number="5.1" id="funciones-de-taxonomía"><span class="header-section-number">5.1</span> Funciones de taxonomía</h2>
+<p>La función <code>find_higher_id</code> permite encontrar los niveles taxonómicos superiores.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb8"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> main.taxo </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> name_tax<span class="op">=</span><span class="st">&#39;Asio clamator&#39;</span></span></code></pre></div>
+<div class="knitsql-table">
+<table>
+<caption><span id="tab:unnamed-chunk-8">Table 6: </span>1 records</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">cd_tax</th>
+<th style="text-align: left;">name_tax</th>
+<th style="text-align: left;">authorship</th>
+<th style="text-align: left;">cd_rank</th>
+<th style="text-align: right;">cd_parent</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">2306</td>
+<td style="text-align: left;">Asio clamator</td>
+<td style="text-align: left;">Vieillot, 1808</td>
+<td style="text-align: left;">SP</td>
+<td style="text-align: right;">1486</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Por ejemplo, podemos ver que la especie <em>Asio clamator</em> tiene el cd_tax 2306.</p>
+<p>Si buscamos la familia de este taxón:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb9"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> find_higher_id(<span class="dv">2306</span>,<span class="st">&#39;FAM&#39;</span>)</span></code></pre></div>
+<div class="knitsql-table">
+<table>
+<caption><span id="tab:unnamed-chunk-9">Table 7: </span>1 records</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">find_higher_id</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">712</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb10"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> main.taxo</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> cd_tax<span class="op">=</span><span class="dv">712</span></span></code></pre></div>
+<div class="knitsql-table">
+<table>
+<caption><span id="tab:unnamed-chunk-10">Table 8: </span>1 records</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">cd_tax</th>
+<th style="text-align: left;">name_tax</th>
+<th style="text-align: left;">authorship</th>
+<th style="text-align: left;">cd_rank</th>
+<th style="text-align: right;">cd_parent</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">712</td>
+<td style="text-align: left;">Strigidae</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">FAM</td>
+<td style="text-align: right;">241</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><em>Buscar un evento, y dar la abundancia de registros para cada familia</em></p>
+<h1 data-number="6" id="y-los-datos-espaciales"><span class="header-section-number">6</span> ¿Y los datos espaciales?</h1>
+<p>Postgis es una extensión de postgreSQL que permite manejar datos espaciales y hacer cálculos espaciales</p>
+<p>Por ejemplo, podemos calcular el area de cada tipo de habitat:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='op'>(</span><span class='va'>habitatArea</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://dbi.r-dbi.org/reference/dbGetQuery.html'>dbGetQuery</a></span><span class='op'>(</span><span class='va'>fracking_db</span>,</span>
+<span>           <span class='st'>"SELECT landcov_spa,SUM(ST_AREA(the_geom)) area</span></span>
+<span><span class='st'>FROM spat.landcov</span></span>
+<span><span class='st'>LEFT JOIN spat.def_landcov USING (cd_landcov)</span></span>
+<span><span class='st'>GROUP BY landcov_spa;</span></span>
+<span><span class='st'>"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>           landcov_spa        area
+1             Cultivos  14196954.8
+2                 &lt;NA&gt;   3806766.1
+3           Herbazales 418228143.6
+4       Bosque Abierto  46801461.0
+5                 Vias  13950713.1
+6               Pastos 288626889.3
+7         Cuerpos Agua 193143254.5
+8                Otros  59221123.3
+9         Bosque Denso 102778648.7
+10              Urbano   9808285.1
+11      Bosque Ripario 133957015.8
+12 Plantacion Forestal    499530.9
+13               Palma 385960569.7
+14    Zonas Pantanosas 118604825.3</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='va'><a href='https://ycphs.github.io/openxlsx/index.html'>openxlsx</a></span><span class='op'>)</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>mar<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>8</span>,<span class='fl'>5</span>,<span class='fl'>1</span>,<span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span></span>
+<span><span class='va'>habitatProp</span><span class='op'>&lt;-</span><span class='va'>habitatArea</span><span class='op'>$</span><span class='va'>area</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>habitatArea</span><span class='op'>$</span><span class='va'>area</span><span class='op'>)</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>habitatProp</span><span class='op'>)</span><span class='op'>&lt;-</span><span class='va'>habitatArea</span><span class='op'>$</span><span class='va'>landcov_spa</span></span>
+<span><span class='va'>color</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/openxlsx/man/read.xlsx.html'>read.xlsx</a></span><span class='op'>(</span><span class='st'>"Colores.xlsx"</span>,sheet <span class='op'>=</span> <span class='st'>"landcover"</span><span class='op'>)</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/graphics/barplot.html'>barplot</a></span><span class='op'>(</span><span class='va'>habitatProp</span>,col<span class='op'>=</span><span class='va'>color</span><span class='op'>$</span><span class='va'>color</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/match.html'>match</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>habitatProp</span><span class='op'>)</span>,<span class='va'>color</span><span class='op'>$</span><span class='va'>landcov_spa</span><span class='op'>)</span><span class='op'>]</span>,las<span class='op'>=</span><span class='fl'>2</span><span class='op'>)</span></span></code></pre>
+</div>
+<p><img src="actividad_files/figure-html5/unnamed-chunk-12-1.png" width="624" /></p>
+</div>
+<p>(El archivo de colores está <a href="https://docs.google.com/spreadsheets/d/1GqbYYsg2gsY534J6-ITDkGqcTaKnWOmK/edit?usp=sharing&amp;ouid=110072426432244168209&amp;rtpof=true&amp;sd=true">aca</a>)</p>
+<p>Ahora si comparamos con la proporción de los eventos en los habitats terrestres:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='op'>(</span><span class='va'>habitatEventTerr</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://dbi.r-dbi.org/reference/dbGetQuery.html'>dbGetQuery</a></span><span class='op'>(</span><span class='va'>fracking_db</span>,</span>
+<span>                               <span class='st'>"SELECT landcov_spa,COUNT(*) nb_event</span></span>
+<span><span class='st'>                               FROM habitat_event he</span></span>
+<span><span class='st'>                               LEFT JOIN spat.def_landcov dl ON dl.landcov=he.habitat</span></span>
+<span><span class='st'>                               WHERE aqu_ter='terrestrial'</span></span>
+<span><span class='st'>                               GROUP BY landcov_spa"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>        landcov_spa nb_event
+1          Cultivos        3
+2    Bosque Ripario     5228
+3        Herbazales      890
+4    Bosque Abierto      334
+5             Palma     1635
+6  Zonas Pantanosas        5
+7              Vias       68
+8      Cuerpos Agua       42
+9            Pastos      381
+10           Urbano        3
+11     Bosque Denso      538</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>propHabitatEvent</span><span class='op'>&lt;-</span><span class='va'>habitatEventTerr</span><span class='op'>$</span><span class='va'>nb_event</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>habitatEventTerr</span><span class='op'>$</span><span class='va'>nb_event</span><span class='op'>)</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>propHabitatEvent</span><span class='op'>)</span><span class='op'>&lt;-</span><span class='va'>habitatEventTerr</span><span class='op'>$</span><span class='va'>landcov_spa</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>mar<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>8</span>,<span class='fl'>5</span>,<span class='fl'>1</span>,<span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span></span>
+<span><span class='va'>propHabitatEvent</span><span class='op'>&lt;-</span><span class='va'>propHabitatEvent</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>habitatProp</span><span class='op'>)</span><span class='op'>]</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/graphics/barplot.html'>barplot</a></span><span class='op'>(</span><span class='va'>propHabitatEvent</span>,col<span class='op'>=</span><span class='va'>color</span><span class='op'>$</span><span class='va'>color</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/match.html'>match</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>propHabitatEvent</span><span class='op'>)</span>,<span class='va'>color</span><span class='op'>$</span><span class='va'>landcov_spa</span><span class='op'>)</span><span class='op'>]</span>,las<span class='op'>=</span><span class='fl'>2</span><span class='op'>)</span></span></code></pre>
+</div>
+<p><img src="actividad_files/figure-html5/unnamed-chunk-13-1.png" width="624" /></p>
+</div>
+<p><em>Hacer el mismo ejercicio por grupo biologico, para ver cuales son los grupos más sesgados en terminos de proporciones de habitat frente al paisaje real de Puerto Wilches</em></p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://dbi.r-dbi.org/reference/dbDisconnect.html'>dbDisconnect</a></span><span class='op'>(</span><span class='va'>fracking_db</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] TRUE</code></pre>
+</div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

@@ -7,6 +7,8 @@ navbar:
   right:
     - text: "Home"
       href: index.html
+    - text: "Actividad practica"
+      href: actividad.html
     - text: "Instalación"
       menu:
         - text: "Windows"
